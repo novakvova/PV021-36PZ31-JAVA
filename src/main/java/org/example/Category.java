@@ -2,27 +2,17 @@ package org.example;
 
 import lombok.Data;
 
+import javax.persistence.*;
+
 @Data
+@Entity
+@Table(name="tblCategories")
 public class Category {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private static int counter=0;
-
-    //default
-    public Category() {
-        counter++;
-    }
-    //parameter
-    public Category(int id)
-    {
-        this.setId(id);
-    }
-
-    public Category(Category category) {
-
-    }
-
-   public static int getCounter() { return counter; }
-    //private int id;
-    //public int id;
+    @Column(length = 200, nullable = false)
+    private String name;
+    @Column(length = 200)
+    private String image;
 }
