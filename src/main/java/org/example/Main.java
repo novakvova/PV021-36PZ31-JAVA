@@ -3,6 +3,7 @@ package org.example;
 import org.hibernate.Session;
 
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -12,6 +13,20 @@ public class Main {
         System.setOut(new PrintStream(System.out, true, "UTF-8"));
         Scanner in = new Scanner(System.in, "UTF-8");
 
+        Session session = HibernameSession.getSessionFactory().openSession();
+        session.beginTransaction();
+        RoleEntity admin = new RoleEntity("Admin");
+        session.save(admin);
+
+        UserEntity user = new UserEntity();
+        user.setEmail("semen@gmail.com");
+        user.setName("semen@gmail.com");
+        user.setPhone("semen@gmail.com");
+        user.setPassword("123456");
+        user.setRoles(Arrays.asList(admin));
+        session.save(user);
+        session.getTransaction().commit();
+        session.close();
         //Add(in);
         //Показати усі продукти
 //        Session session = HibernameSession.getSessionFactory().openSession();
