@@ -16,6 +16,7 @@ public class HibernameSession {
                 Configuration configuration = new Configuration().configure();
 
                 configuration.addAnnotatedClass(Category.class);
+                configuration.addAnnotatedClass(Product.class);
 
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties());
